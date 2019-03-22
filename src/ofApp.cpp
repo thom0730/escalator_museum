@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);   //背景色
-    //ofEnableAlphaBlending();    //アルファチャネルを有効化
+    ofEnableAlphaBlending();    //アルファチャネルを有効化
     ofSetCircleResolution(64);  //円の解像度
     
     model_path = "Escalator 1.3DS";
@@ -41,39 +41,22 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    //エスカレーター側面 右側
-    ofPushMatrix();
-    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    cam.begin();
-    ofSetColor(255);
-    ofRotateY(90);
-    ofRotateZ(35);
-    ofTranslate(-60,30,-20);
-    for(int i = 0 ; i < 200 ; i+= 3){
-        i += random[i];
-        ofRect(i, 0, 0.5, 30); //四角形を描画
-    }
-    cam.end();
-    ofPopMatrix();
-
-//    //検証用エスカレーター側面 右側
+//    //エスカレーター側面 右側
 //    ofPushMatrix();
 //    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
 //    cam.begin();
+//    ofSetColor(255);
 //    ofRotateY(90);
 //    ofRotateZ(35);
 //    ofTranslate(-60,30,-20);
-//    ofSetColor(0);
-//    for(int i = 0 ; i < 200 ; i++){
-//        if(i%4 == 0){
-//            //i += random[i];
-//            ofRect(i, 0, 3.5, 30); //四角形を描画
-//
-//        }
+//    for(int i = 0 ; i < 200 ; i+= 3){
+//        i += random[i];
+//        ofRect(i, 0, 0.5, 30); //四角形を描画
 //    }
 //    cam.end();
 //    ofPopMatrix();
-//    
+
+    
     
     //隣エスカレーター側面 右側
     ofPushMatrix();
@@ -82,13 +65,32 @@ void ofApp::draw(){
     ofSetColor(255);
     ofRotateY(90);
     ofRotateZ(50);
-    ofTranslate(-60,30,-40);
+    ofTranslate(-60,-20,-40);
     for(int i = 0 ; i < 200 ; i+= 3){
         i += random[i];
-        ofRect(i, 0, 0.5, 30); //四角形を描画
+        ofRect(i, 0, 0.5, 100); //四角形を描画
     }
     cam.end();
     ofPopMatrix();
+    
+    //隣エスカレーター側面 左側
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
+    cam.begin();
+    ofSetColor(255);
+    ofRotateY(90);
+    ofRotateZ(50);
+    ofTranslate(-60,-20,40);
+    for(int i = 0 ; i < 200 ; i+= 3){
+        i += random[i];
+        ofRect(i, 0, 0.5, 100); //四角形を描画
+    }
+    cam.end();
+    ofPopMatrix();
+    
+    
+    
+    
     
     //エスカレーター脇 右側
     ofPushMatrix();
@@ -107,20 +109,20 @@ void ofApp::draw(){
     ofPopMatrix();
     
 
-    //エスカレーター側面 左側
-    ofPushMatrix();
-    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
-    cam.begin();
-    ofSetColor(255);
-    ofRotateY(90);
-    ofRotateZ(35);
-    ofTranslate(-60,30,20);
-    for(int i = 0 ; i < 200 ; i+= 3){
-        i += random[i];
-        ofRect(i, 0, 0.5, 30); //四角形を描画
-    }
-    cam.end();
-    ofPopMatrix();
+//    //エスカレーター側面 左側
+//    ofPushMatrix();
+//    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
+//    cam.begin();
+//    ofSetColor(255);
+//    ofRotateY(90);
+//    ofRotateZ(35);
+//    ofTranslate(-60,30,20);
+//    for(int i = 0 ; i < 200 ; i+= 3){
+//        i += random[i];
+//        ofRect(i, 0, 0.5, 30); //四角形を描画
+//    }
+//    cam.end();
+//    ofPopMatrix();
     //エスカレーター脇 右側
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
@@ -151,9 +153,48 @@ void ofApp::draw(){
     ofRotateZ(180);
     ofTranslate(0,30);
     ofSetLineWidth(1);
-    ofSetColor(255,20);
+    ofSetColor(150,50);
     mAssimpModelLoader.drawVertices(); //モデルの頂点を描画
     mAssimpModelLoader.drawFaces();  //モデルの面を描画
+    cam.end();
+    ofPopMatrix();
+    
+    
+    //検証用エスカレーター側面 右側
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
+    cam.begin();
+    ofRotateY(90);
+    ofRotateZ(35);
+    ofTranslate(-60,30,-20);
+    ofSetColor(0,255);
+    for(int i = 0 ; i < 200 ; i++){
+        if(i%4 == 0){
+            //i += random[i];
+            //ofSetColor(0x000000);
+            ofRect(i, 0, 3.5, 30); //四角形を描画
+            
+        }
+    }
+    cam.end();
+    ofPopMatrix();
+    
+    //検証用エスカレーター側面 左側
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2,ofGetHeight()/2);
+    cam.begin();
+    ofRotateY(90);
+    ofRotateZ(35);
+    ofTranslate(-60,30,20);
+    ofSetColor(0,255);
+    for(int i = 0 ; i < 200 ; i++){
+        if(i%4 == 0){
+            //i += random[i];
+            //ofSetColor(0x000000);
+            ofRect(i, 0, 3.5, 30); //四角形を描画
+            
+        }
+    }
     cam.end();
     ofPopMatrix();
 }
